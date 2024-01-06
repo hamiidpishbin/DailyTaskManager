@@ -1,8 +1,8 @@
 namespace DailyTaskManager.Application.Models.Identity;
 
-public class AppUserDto
+public record AppUserDto
 {
-  public string Id { get; set; } = string.Empty;
-  public string UserName { get; set; } = string.Empty;
-  public string Email { get; set; } = string.Empty;
+  public string Id { get; set; } = default!;
+  public string UserName { get; set; } = default!;
+  public string Email { get; set; } = default!;
 }
