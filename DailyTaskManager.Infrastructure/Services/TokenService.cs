@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Ardalis.GuardClauses;
 using DailyTaskManager.Application.Interfaces;
 using DailyTaskManager.Application.Models.Identity;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +20,8 @@ public class TokenService(IConfiguration config) : ITokenService
       new (ClaimTypes.Email, user.Email),
     };
 
-    var tokenKey = config["TokenKey"] ?? throw new InvalidOperationException();
+    var tokenKey = config["TokenKey"];
+    Guard.Against.Null(tokenKey, message: "Token Key Was Null Or Empty");
     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey));
     var credits = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
