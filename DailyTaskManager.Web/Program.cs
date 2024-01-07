@@ -12,4 +12,9 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseCors("CorsPolicy");
+
 app.Run();

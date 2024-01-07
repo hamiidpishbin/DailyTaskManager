@@ -1,6 +1,7 @@
 using System.Reflection;
-using DailyTaskManager.Application;
 using DailyTaskManager.Application.Interfaces;
+using DailyTaskManager.Domain.Entities;
+using DailyTaskManager.Domain.Enums;
 using DailyTaskManager.Infrastructure.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,9 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>, IApplicationDbCo
   {
     
   }
+
+  public DbSet<DailyTask> Tasks => Set<DailyTask>();
+  public DbSet<DelayedTask> DelayedTasks => Set<DelayedTask>();
 
   protected override void OnModelCreating(ModelBuilder builder)
   {
