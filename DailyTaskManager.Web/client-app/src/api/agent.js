@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
@@ -13,7 +13,7 @@ const requests = {
 
 const Account = {
   current: () => requests.get < User > "/account",
-  login: (user) => requests.post < User > ("/account/login", user),
+  login: (user) => requests.post("/account/login", user),
   register: (user) => requests.post("/account/register", user),
 };
 
