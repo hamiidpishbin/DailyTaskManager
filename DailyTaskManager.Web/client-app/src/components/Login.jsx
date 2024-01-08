@@ -3,6 +3,7 @@ import { loginFields } from "../constants/formFields";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import Input from "./Input";
+import agent from "../api/agent";
 
 const fields = loginFields;
 let fieldsState = {};
@@ -21,7 +22,11 @@ export default function Login() {
   };
 
   //Handle Login API Integration here
-  const authenticateUser = () => {};
+  const authenticateUser = () => {
+    agent.Account.login(loginState)
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error.request.response));
+  };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

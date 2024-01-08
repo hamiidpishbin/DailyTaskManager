@@ -10,11 +10,11 @@ builder.Services.AddWebServices(builder.Configuration);
 
 var app = builder.Build();
 
+app.UseCors("CorsPolicy");
+
 app.MapGet("/", () => "Hello World!");
 app.MapControllers();
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseCors("CorsPolicy");
 
 app.Run();

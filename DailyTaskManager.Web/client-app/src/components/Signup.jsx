@@ -17,16 +17,14 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(signupState);
     createAccount();
   };
 
   //handle Signup API Integration here
-  const createAccount = (signupState) => {
-    
+  const createAccount = () => {
     agent.Account.signup(signupState)
       .then((data) => console.log(data))
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error.request.response));
   };
 
   return (

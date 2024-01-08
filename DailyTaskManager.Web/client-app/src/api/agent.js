@@ -1,10 +1,6 @@
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
-axios.defaults.headers = {
-  "Content-Type": "multipart/form-data",
-  accept: "application/json",
-};
 
 const responseBody = (response) => response.data;
 

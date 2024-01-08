@@ -1,3 +1,4 @@
+using System.Reflection;
 using Ardalis.GuardClauses;
 using DailyTaskManager.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,8 @@ public static class InfrastructureServicesConfigurations
   public static IServiceCollection AddInfrastructureServices(this IServiceCollection services,
     IConfiguration configuration)
   {
+    services.AddAutoMapper(Assembly.GetExecutingAssembly());
+    
     var connectionString = configuration.GetConnectionString("DefaultConnection");
     Guard.Against.Null(connectionString, message: "Connection String 'DefaultConnection' Not Found");
     services.AddDbContext<ApplicationDbContext>((options) =>
