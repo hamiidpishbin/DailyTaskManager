@@ -2,6 +2,7 @@ import { useState } from "react";
 import { signupFields } from "../constants/formFields";
 import FormAction from "./FormAction";
 import Input from "./Input";
+import agent from "../api/agent";
 
 const fields = signupFields;
 let fieldsState = {};
@@ -21,7 +22,12 @@ export default function Signup() {
   };
 
   //handle Signup API Integration here
-  const createAccount = () => {};
+  const createAccount = (signupState) => {
+    
+    agent.Account.signup(signupState)
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+  };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

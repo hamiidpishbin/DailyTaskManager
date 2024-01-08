@@ -1,6 +1,10 @@
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
+axios.defaults.headers = {
+  "Content-Type": "multipart/form-data",
+  accept: "application/json",
+};
 
 const responseBody = (response) => response.data;
 
@@ -13,7 +17,7 @@ const requests = {
 
 const Account = {
   login: (user) => requests.post("/account/login", user),
-  register: (user) => requests.post("/account/signup", user),
+  signup: (user) => requests.post("/account/signup", user),
 };
 
 const agent = {
