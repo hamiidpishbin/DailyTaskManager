@@ -38,6 +38,11 @@ public class IdentityService(UserManager<AppUser> userManager,
 
   public async Task<ServiceResult<bool>> CreateUserAsync(SignUpDto signUpDto)
   {
+    if (signUpDto.Password != signUpDto.PasswordConfirm)
+    {
+      return ServiceResult<bool>.Failure(IdentityErrorType.PasswordConfirmationDoesNotMatch.ToString());
+    }
+    
     var userNameIsTaken = await userManager.Users.AnyAsync(user => user.UserName == signUpDto.UserName);
     if (userNameIsTaken)
     {
