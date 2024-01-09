@@ -67,7 +67,7 @@ const signupFields = [
     labelFor: "passwordConfirm",
     id: "passwordConfirm",
     name: "passwordConfirm",
-    type: "passwordConfirm",
+    type: "password",
     autoComplete: "passwordConfirm",
     isRequired: true,
     placeholder: "Confirm Password",
