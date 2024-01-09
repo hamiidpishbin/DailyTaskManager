@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import Login from "../components/Login";
 
-export default function LoginPage() {
+export default function LoginPage({handleUserLogin}) {
   return (
     <>
       <Header
@@ -11,7 +11,7 @@ export default function LoginPage() {
         linkName="Signup"
         linkUrl="/signup"
       />
-      <Login />
+      <Login handleUserLogin={handleUserLogin} />
     </>
   );
 }

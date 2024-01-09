@@ -10,8 +10,18 @@ const clearTokenFromLocalStorage = () => {
   localStorage.removeItem("accessToken");
 };
 
+const isLoggedIn = () => {
+  return !!localStorage.getItem("accessToken");
+};
+
+const logout = () => {
+  localStorage.removeItem("accessToken");
+};
+
 export {
   saveTokenToLocalStorage,
   getTokenFromLocalStorage,
   clearTokenFromLocalStorage,
+  isLoggedIn,
+  logout,
 };

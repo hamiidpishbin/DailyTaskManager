@@ -4,12 +4,13 @@ import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import Input from "./Input";
 import agent from "../api/agent";
+import { saveTokenToLocalStorage } from "../api/tokenHandler";
 
 const fields = loginFields;
 let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
-export default function Login() {
+export default function Login({handleUserLogin}) {
   const [loginState, setLoginState] = useState(fieldsState);
 
   const handleChange = (e) => {
@@ -24,7 +25,10 @@ export default function Login() {
   //Handle Login API Integration here
   const authenticateUser = () => {
     agent.Account.login(loginState)
-      .then((data) => console.log(data))
+      .then((data) => {
+        saveTokenToLocalStorage(data.token);
+        handleUserLogin(true);
+      })
       .catch((error) => console.log(error.request.response));
   };
 
