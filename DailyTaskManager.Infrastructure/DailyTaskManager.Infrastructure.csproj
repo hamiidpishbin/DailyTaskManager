@@ -20,4 +20,8 @@
       <ProjectReference Include="..\DailyTaskManager.Application\DailyTaskManager.Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="EntityConfigurations\" />
+    </ItemGroup>
+
 </Project>

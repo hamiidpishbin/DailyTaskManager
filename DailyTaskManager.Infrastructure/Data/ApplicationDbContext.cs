@@ -17,6 +17,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>, IApplicationDbCo
 
   public DbSet<DailyTask> Tasks => Set<DailyTask>();
   public DbSet<DelayedTask> DelayedTasks => Set<DelayedTask>();
+  public DbSet<Sprint> Sprints => Set<Sprint>();
 
   protected override void OnModelCreating(ModelBuilder builder)
   {

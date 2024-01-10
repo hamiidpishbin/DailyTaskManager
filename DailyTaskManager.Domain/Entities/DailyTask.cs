@@ -5,15 +5,10 @@ namespace DailyTaskManager.Domain.Entities;
 
 public record DailyTask
 {
-  [Required]
-  public Guid Id { get; init; }
-
-  [Required]
-  public string Title { get; init; } = default!;
-  [Required]
-  public TaskState State { get; init; }
-  public string Comments { get; init; } = default!;
-  [Required]
-  public DateTime StartDate { get; init; }
+  public required Guid Id { get; init; }
+  public required string Title { get; init; } = string.Empty;
+  public required TaskState State { get; init; } = TaskState.Planned;
+  public string Comments { get; init; } = string.Empty;
+  public required DateTime StartDate { get; init; } = DateTime.Now;
   public DateTime? EndDate { get; init; }
 }
