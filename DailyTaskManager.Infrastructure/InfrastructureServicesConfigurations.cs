@@ -1,5 +1,6 @@
 using System.Reflection;
 using Ardalis.GuardClauses;
+using DailyTaskManager.Application.Interfaces;
 using DailyTaskManager.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,8 @@ public static class InfrastructureServicesConfigurations
       options.UseSqlServer(connectionString);
     });
 
+    services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+    
     return services;
   }
 }

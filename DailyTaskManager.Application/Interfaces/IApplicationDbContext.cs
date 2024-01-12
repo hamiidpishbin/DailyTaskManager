@@ -9,4 +9,5 @@ public interface IApplicationDbContext
   DbSet<DailyTask> Tasks { get; }
   DbSet<DelayedTask> DelayedTasks { get; }
   DbSet<Sprint> Sprints { get; }
+  Task<int> SaveChangesAsync(CancellationToken cancellationToken = new());
 }

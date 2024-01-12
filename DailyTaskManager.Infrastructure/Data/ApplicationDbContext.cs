@@ -18,6 +18,12 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>, IApplicationDbCo
   public DbSet<DailyTask> Tasks => Set<DailyTask>();
   public DbSet<DelayedTask> DelayedTasks => Set<DelayedTask>();
   public DbSet<Sprint> Sprints => Set<Sprint>();
+  
+  public override async Task<int> SaveChangesAsync(
+    CancellationToken cancellationToken = new())
+  {
+    return await base.SaveChangesAsync(cancellationToken);
+  }
 
   protected override void OnModelCreating(ModelBuilder builder)
   {
