@@ -17,7 +17,7 @@ public class SprintTaskService(IApplicationDbContext dbContext, IMapper mapper) 
     return ServiceResult<IEnumerable<SprintTaskDto>>.Success(result);
   }
   
-  public async Task<ServiceResult<bool>> AddSprintTasks(AddSprintTaskDto request)
+  public async Task<ServiceResult<bool>> AddSprintTasksAsync(AddSprintTaskDto request)
   {
     var sprintInDb = await dbContext.Sprints.FindAsync(request.SprintId);
     if (sprintInDb is null) return ServiceResult<bool>.Failure("Sprint Not Found");

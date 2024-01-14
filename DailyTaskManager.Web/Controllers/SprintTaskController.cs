@@ -16,7 +16,7 @@ public class SprintTaskController(ISprintTaskService sprintTaskService) : BaseAp
   [HttpPost]
   public async Task<IActionResult> AddSprintTasks(AddSprintTaskDto request)
   {
-    var result = await sprintTaskService.AddSprintTasks(request);
+    var result = await sprintTaskService.AddSprintTasksAsync(request);
     return HandleResult(result);
   }
 }

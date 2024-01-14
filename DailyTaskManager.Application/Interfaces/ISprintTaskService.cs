@@ -7,5 +7,5 @@ namespace DailyTaskManager.Application.Interfaces;
 public interface ISprintTaskService
 {
   Task<ServiceResult<IEnumerable<SprintTaskDto>>> GetSprintTasksAsync(Guid sprintId);
-  Task<ServiceResult<bool>> AddSprintTasks(AddSprintTaskDto request);
+  Task<ServiceResult<bool>> AddSprintTasksAsync(AddSprintTaskDto request);
 }
