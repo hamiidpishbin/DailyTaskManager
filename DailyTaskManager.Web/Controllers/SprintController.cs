@@ -1,5 +1,4 @@
 using DailyTaskManager.Application.Interfaces;
-using DailyTaskManager.Application.Models;
 using DailyTaskManager.Application.Models.Sprint;
 using Microsoft.AspNetCore.Mvc;
 

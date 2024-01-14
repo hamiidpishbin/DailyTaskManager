@@ -12,9 +12,7 @@ public class SprintService(IApplicationDbContext dbContext, IMapper mapper) : IS
 {
   public async Task<PagedResponse<Sprint>> GetPagedData(int currentPage, int pageSize)
   {
-    var query = dbContext.Sprints.AsQueryable();
-
-    var totalItems = await query.CountAsync();
+    var query = dbContext.Sprints.AsQueryable().AsNoTracking();
 
     var items = await query.Skip((currentPage - 1) * pageSize)
       .Take(pageSize)
@@ -27,7 +25,7 @@ public class SprintService(IApplicationDbContext dbContext, IMapper mapper) : IS
       {
         CurrentPage = currentPage,
         PageSize = pageSize,
-        TotalItems = totalItems
+        TotalItems = items.Count
       }
     };
   }

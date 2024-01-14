@@ -18,6 +18,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>, IApplicationDbCo
   public DbSet<DailyTask> Tasks => Set<DailyTask>();
   public DbSet<DelayedTask> DelayedTasks => Set<DelayedTask>();
   public DbSet<Sprint> Sprints => Set<Sprint>();
+  public DbSet<SprintTask> SprintTasks => Set<SprintTask>();
   
   public override async Task<int> SaveChangesAsync(
     CancellationToken cancellationToken = new())

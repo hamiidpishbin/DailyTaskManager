@@ -11,6 +11,7 @@ public static class ApplicationServicesConfigurations
   {
     services.AddAutoMapper(Assembly.GetExecutingAssembly());
     services.AddScoped<ISprintService, SprintService>();
+    services.AddScoped<ISprintTaskService, SprintTaskService>();
     return services;
   }
 }
