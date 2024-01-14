@@ -21,7 +21,12 @@ public class SprintTaskService(IApplicationDbContext dbContext, IMapper mapper) 
   {
     var sprintInDb = await dbContext.Sprints.FindAsync(request.SprintId);
     if (sprintInDb is null) return ServiceResult<bool>.Failure("Sprint Not Found");
-    sprintInDb.SprintTasks.AddRange(mapper.Map<IEnumerable<SprintTask>>(request.SprintTasks));
+
+    var sprintTasksToBeSaved = request.SprintTasks
+      .Where(requestSprintTask => sprintInDb.SprintTasks.All(sprintTaskInDb => requestSprintTask.Title.Trim() != sprintTaskInDb.Title.Trim()))
+      .ToList();
+    
+    sprintInDb.SprintTasks.AddRange(mapper.Map<IEnumerable<SprintTask>>(sprintTasksToBeSaved));
     var saveResult = await dbContext.SaveChangesAsync() > 0;
     return saveResult
       ? ServiceResult<bool>.Success(true)
