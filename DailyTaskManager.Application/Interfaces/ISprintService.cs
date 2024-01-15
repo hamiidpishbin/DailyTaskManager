@@ -11,4 +11,5 @@ public interface ISprintService
   Task AddSprints(IEnumerable<SprintDto> sprints);
   Task DeleteSprint(Guid sprintId);
   Task<ServiceResult<bool>> EditSprint(SprintUpdateDto sprintUpdateDto);
+  Task<PagedResponse<Sprint>> GetPagedSprintsWithTasks(int currentPage, int pageSize);
 }

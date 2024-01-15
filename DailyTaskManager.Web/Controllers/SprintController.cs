@@ -12,6 +12,13 @@ public class SprintController(ISprintService sprintService) : BaseApiController
     var result = await sprintService.GetPagedData(currentPage, pageSize);
     return Ok(result);
   }
+  
+  [HttpGet("GetSprintsWithTasks")]
+  public async Task<IActionResult> GetSprintsWithTasks([FromQuery] int currentPage = 1, [FromQuery] int pageSize = 10)
+  {
+    var result = await sprintService.GetPagedSprintsWithTasks(currentPage, pageSize);
+    return Ok(result);
+  }
 
   [HttpPost]
   public async Task<IActionResult> Add(IEnumerable<SprintDto> sprints)

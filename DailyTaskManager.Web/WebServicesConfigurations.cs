@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using DailyTaskManager.Application.Interfaces;
 using DailyTaskManager.Infrastructure.Data;
 using DailyTaskManager.Infrastructure.Models;
@@ -47,6 +48,9 @@ public static class WebServicesConfigurations
     {
       var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
       options.Filters.Add(new AuthorizeFilter(policy));
+    }).AddJsonOptions(options =>
+    {
+      options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 
     return services;

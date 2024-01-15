@@ -29,6 +29,26 @@ public class SprintService(IApplicationDbContext dbContext, IMapper mapper) : IS
       }
     };
   }
+  
+  public async Task<PagedResponse<Sprint>> GetPagedSprintsWithTasks(int currentPage, int pageSize)
+  {
+    var query = dbContext.Sprints.AsQueryable().AsNoTracking().Include(s => s.SprintTasks);
+
+    var items = await query.Skip((currentPage - 1) * pageSize)
+      .Take(pageSize)
+      .ToListAsync();
+
+    return new PagedResponse<Sprint>
+    {
+      Data = items,
+      Pagination = new Pagination
+      {
+        CurrentPage = currentPage,
+        PageSize = pageSize,
+        TotalItems = items.Count
+      }
+    };
+  }
 
   public async Task AddSprints(IEnumerable<SprintDto> sprints)
   {

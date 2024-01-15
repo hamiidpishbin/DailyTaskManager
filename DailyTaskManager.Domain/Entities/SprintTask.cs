@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace DailyTaskManager.Domain.Entities;
 
 public record SprintTask
