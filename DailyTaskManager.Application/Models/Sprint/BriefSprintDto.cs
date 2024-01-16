@@ -1,6 +1,6 @@
 namespace DailyTaskManager.Application.Models.Sprint;
 
-public record SprintUpdateDto : BaseSprintDto
+public record BriefSprintDto : BaseSprintDto
 {
   public Guid Id { get; set; }
 }

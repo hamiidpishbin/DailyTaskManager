@@ -1,8 +1,9 @@
+using DailyTaskManager.Application.Models.SprintTask;
+
 namespace DailyTaskManager.Application.Models.Sprint;
 
-public record SprintDto
+public record SprintDto : BaseSprintDto
 {
-  public required string Name { get; set; }
-  public required DateOnly StartDate { get; set; }
-  public required DateOnly EndDate { get; set; }
+  public Guid Id { get; set; }
+  public IEnumerable<SprintTaskDto> SprintTasks { get; set; } = Enumerable.Empty<SprintTaskDto>();
 }

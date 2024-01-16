@@ -21,7 +21,7 @@ public class SprintController(ISprintService sprintService) : BaseApiController
   }
 
   [HttpPost]
-  public async Task<IActionResult> Add(IEnumerable<SprintDto> sprints)
+  public async Task<IActionResult> Add(IEnumerable<BaseSprintDto> sprints)
   {
     await sprintService.AddSprints(sprints);
     return Ok();

@@ -10,7 +10,7 @@ namespace DailyTaskManager.Application.Services;
 
 public class SprintService(IApplicationDbContext dbContext, IMapper mapper) : ISprintService
 {
-  public async Task<PagedResponse<Sprint>> GetPagedData(int currentPage, int pageSize)
+  public async Task<PagedResponse<BriefSprintDto>> GetPagedData(int currentPage, int pageSize)
   {
     var query = dbContext.Sprints.AsQueryable().AsNoTracking();
 
@@ -18,9 +18,9 @@ public class SprintService(IApplicationDbContext dbContext, IMapper mapper) : IS
       .Take(pageSize)
       .ToListAsync();
 
-    return new PagedResponse<Sprint>
+    return new PagedResponse<BriefSprintDto>
     {
-      Data = items,
+      Data = mapper.Map<IEnumerable<BriefSprintDto>>(items),
       Pagination = new Pagination
       {
         CurrentPage = currentPage,
@@ -30,7 +30,7 @@ public class SprintService(IApplicationDbContext dbContext, IMapper mapper) : IS
     };
   }
   
-  public async Task<PagedResponse<Sprint>> GetPagedSprintsWithTasks(int currentPage, int pageSize)
+  public async Task<PagedResponse<SprintDto>> GetPagedSprintsWithTasks(int currentPage, int pageSize)
   {
     var query = dbContext.Sprints.AsQueryable().AsNoTracking().Include(s => s.SprintTasks);
 
@@ -38,9 +38,9 @@ public class SprintService(IApplicationDbContext dbContext, IMapper mapper) : IS
       .Take(pageSize)
       .ToListAsync();
 
-    return new PagedResponse<Sprint>
+    return new PagedResponse<SprintDto>
     {
-      Data = items,
+      Data = mapper.Map<IEnumerable<SprintDto>>(items),
       Pagination = new Pagination
       {
         CurrentPage = currentPage,
@@ -50,7 +50,7 @@ public class SprintService(IApplicationDbContext dbContext, IMapper mapper) : IS
     };
   }
 
-  public async Task AddSprints(IEnumerable<SprintDto> sprints)
+  public async Task AddSprints(IEnumerable<BaseSprintDto> sprints)
   {
     foreach (var sprint in sprints)
     {

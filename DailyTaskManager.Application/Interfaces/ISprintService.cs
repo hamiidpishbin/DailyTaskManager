@@ -7,9 +7,9 @@ namespace DailyTaskManager.Application.Interfaces;
 
 public interface ISprintService
 {
-  Task<PagedResponse<Sprint>> GetPagedData(int currentPage, int pageSize);
-  Task AddSprints(IEnumerable<SprintDto> sprints);
+  Task<PagedResponse<BriefSprintDto>> GetPagedData(int currentPage, int pageSize);
+  Task AddSprints(IEnumerable<BaseSprintDto> sprints);
   Task DeleteSprint(Guid sprintId);
   Task<ServiceResult<bool>> EditSprint(SprintUpdateDto sprintUpdateDto);
-  Task<PagedResponse<Sprint>> GetPagedSprintsWithTasks(int currentPage, int pageSize);
+  Task<PagedResponse<SprintDto>> GetPagedSprintsWithTasks(int currentPage, int pageSize);
 }

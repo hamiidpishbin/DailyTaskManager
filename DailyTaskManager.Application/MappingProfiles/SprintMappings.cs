@@ -9,6 +9,8 @@ public class SprintMappings : Profile
 {
   public SprintMappings()
   {
-    CreateMap<SprintDto, Sprint>();
+    CreateMap<BaseSprintDto, Sprint>();
+    CreateMap<Sprint, BriefSprintDto>();
+    CreateMap<Sprint, SprintDto>();
   }
 }
