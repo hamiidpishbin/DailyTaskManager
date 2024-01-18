@@ -8,4 +8,5 @@ public interface ISprintTaskService
 {
   Task<ServiceResult<IEnumerable<SprintTaskDto>>> GetSprintTasksAsync(Guid sprintId);
   Task<ServiceResult<bool>> AddSprintTasksAsync(AddSprintTaskDto request);
+  Task<ServiceResult<bool>> UpdateSprintTaskAsync(SprintTaskDto request);
 }

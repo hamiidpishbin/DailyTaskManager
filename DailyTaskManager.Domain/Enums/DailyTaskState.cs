@@ -1,6 +1,6 @@
 namespace DailyTaskManager.Domain.Enums;
 
-public enum TaskState
+public enum DailyTaskState
 {
   Unplanned = 1,
   Planned,

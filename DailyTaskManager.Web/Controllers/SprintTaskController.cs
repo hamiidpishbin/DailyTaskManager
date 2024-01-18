@@ -19,4 +19,11 @@ public class SprintTaskController(ISprintTaskService sprintTaskService) : BaseAp
     var result = await sprintTaskService.AddSprintTasksAsync(request);
     return HandleResult(result);
   }
+
+  [HttpPut]
+  public async Task<IActionResult> UpdateSprintTask(SprintTaskDto request)
+  {
+    var result = await sprintTaskService.UpdateSprintTaskAsync(request);
+    return HandleResult(result);
+  }
 }

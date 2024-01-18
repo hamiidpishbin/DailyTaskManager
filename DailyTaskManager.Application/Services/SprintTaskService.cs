@@ -32,4 +32,17 @@ public class SprintTaskService(IApplicationDbContext dbContext, IMapper mapper) 
       ? ServiceResult<bool>.Success(true)
       : ServiceResult<bool>.Failure("Failed to Add Sprint Tasks");
   }
+
+  public async Task<ServiceResult<bool>> UpdateSprintTaskAsync(SprintTaskDto request)
+  {
+    var sprintTaskInDb = await dbContext.SprintTasks.FindAsync(request.Id);
+    if (sprintTaskInDb is null) return ServiceResult<bool>.Failure("Sprint Task Not Found");
+
+    var sprintTask = mapper.Map<SprintTask>(request);
+    dbContext.SprintTasks.Update(sprintTask);
+    var saveResult = await dbContext.SaveChangesAsync() > 0;
+    return saveResult
+      ? ServiceResult<bool>.Success(true)
+      : ServiceResult<bool>.Failure("Failed to Update Sprint Task");
+  }
 }
